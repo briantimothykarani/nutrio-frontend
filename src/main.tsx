@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import {
-  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  BrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
 
@@ -20,44 +22,50 @@ import ViewAthletes from './components/AthleteList';
 import ReadAthlete from './components/Readathlete';
 import { AthleteFormProvider } from './context/AthleteFormContext';
 
-const router = createBrowserRouter([
-  { path: '/', element: <App /> },
-  { path: '/login', element: <Login /> },
-  { path: '/signup', element: <Signup /> },
-  { path: '/viewathletes', element: <ViewAthletes /> },
-  { path: '/athletesummarybasic/:id', element: <AthleteSummaryBasic /> },
-  { path: '/deleteathlete/:id', element: <DeleteAthlete /> },
-  { path: '/updateathlete/:id', element: <UpdateAthlete /> },
-  { path: '/readathlete/:id', element: <ReadAthlete /> },
-  {
-    path: '/addathlete',
-    element: (
-      <AthleteFormProvider>
-        <AddAthlete />
-      </AthleteFormProvider>
-    ),
-  },
-  {
-    path: '/addathleteb',
-    element: (
-      <AthleteFormProvider>
-        <AddAthleteb />
-      </AthleteFormProvider>
-    ),
-  },
-  {
-    path: '/addathletec',
-    element: (
-      <AthleteFormProvider>
-        <AddAthletec />
-      </AthleteFormProvider>
-    ),
-  },
-]);
+const routes = createRoutesFromElements(
+  <>
+    <Route path="/" element={<App />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/viewathletes" element={<ViewAthletes />} />
+    <Route path="/athletesummarybasic/:id" element={<AthleteSummaryBasic />} />
+    <Route path="/deleteathlete/:id" element={<DeleteAthlete />} />
+    <Route path="/updateathlete/:id" element={<UpdateAthlete />} />
+    <Route path="/readathlete/:id" element={<ReadAthlete />} />
+    <Route
+      path="/addathlete"
+      element={
+        <AthleteFormProvider>
+          <AddAthlete />
+        </AthleteFormProvider>
+      }
+    />
+    <Route
+      path="/addathleteb"
+      element={
+        <AthleteFormProvider>
+          <AddAthleteb />
+        </AthleteFormProvider>
+      }
+    />
+    <Route
+      path="/addathletec"
+      element={
+        <AthleteFormProvider>
+          <AddAthletec />
+        </AthleteFormProvider>
+      }
+    />
+  </>
+);
+
+const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter basename="/nutrio-frontend">
+      <RouterProvider router={router} />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
