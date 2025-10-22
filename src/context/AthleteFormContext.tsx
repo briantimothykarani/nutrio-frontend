@@ -1,45 +1,3 @@
-/*
-import React, { createContext, useContext, useState } from "react";
-
-const defaultValues = {
-    athlete: "",
-    bday: "",
-
-    gender: "",
-    height: "",
-    about_athlete: "",
-};
-
-type AthleteFormType = typeof defaultValues;
-
-interface AthleteFormContextType {
-    values: AthleteFormType;
-    updateValues: (newData: Partial<AthleteFormType>) => void;
-}
-
-const AthleteFormContext = createContext<AthleteFormContextType | null>(null);
-
-export function AthleteFormProvider({ children }: { children: React.ReactNode }) {
-    const [values, setValues] = useState<AthleteFormType>(defaultValues);
-
-    const updateValues = (newData: Partial<AthleteFormType>) =>
-        setValues(prev => ({ ...prev, ...newData }));
-
-    return (
-        <AthleteFormContext.Provider value={{ values, updateValues }}>
-            {children}
-        </AthleteFormContext.Provider>
-    );
-}
-
-export const useAthleteForm = () => {
-    const context = useContext(AthleteFormContext);
-    if (!context) {
-        throw new Error("useAthleteForm must be used within a AthleteFormProvider");
-    }
-    return context;
-};
-*/
 import React, { createContext, useContext, useState } from "react";
 
 interface AthleteValues {
@@ -67,12 +25,26 @@ const AthleteFormContext = createContext<{
 
 export const AthleteFormProvider = ({ children }: { children: React.ReactNode }) => {
   const [values, setValues] = useState(defaultValues);
-  const updateValues = (v: Partial<AthleteValues>) => setValues(prev => ({ ...prev, ...v }));
-  return <AthleteFormContext.Provider value={{ values, updateValues }}>{children}</AthleteFormContext.Provider>;
+
+  const updateValues = (v: Partial<AthleteValues>) => {
+    setValues((prev) => ({
+      ...prev,
+      ...v,
+    }));
+  };
+
+  return (
+    <AthleteFormContext.Provider value={{ values, updateValues }}>
+      {children}
+    </AthleteFormContext.Provider>
+  );
 };
 
 export const useAthleteForm = () => {
   const ctx = useContext(AthleteFormContext);
-  if (!ctx) throw new Error("Must be used inside AthleteFormProvider");
+  if (!ctx) {
+    throw new Error("useAthleteForm must be used within AthleteFormProvider");
+  }
   return ctx;
 };
+

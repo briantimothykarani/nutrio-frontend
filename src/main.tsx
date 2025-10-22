@@ -1,10 +1,10 @@
-import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css';
 
 import {
-    createBrowserRouter,
-    RouterProvider,
+  createBrowserRouter,
+  RouterProvider,
 } from 'react-router-dom';
 
 import App from './App';
@@ -21,49 +21,43 @@ import ReadAthlete from './components/Readathlete';
 import { AthleteFormProvider } from './context/AthleteFormContext';
 
 const router = createBrowserRouter([
-    { path: '/', element: <App /> },
-    { path: '/login', element: <Login /> },
-    { path: '/signup', element: <Signup /> },
-    { path: '/viewathletes', element: <ViewAthletes /> },
-    { path: '/athletesummarybasic/:id', element: <AthleteSummaryBasic /> },
-    { path: '/deleteathlete/:id', element: <DeleteAthlete /> },
-    { path: '/updateathlete/:id', element: <UpdateAthlete /> },
-    { path: '/readathlete/:id', element: <ReadAthlete /> },
-
-    {
-        path: '/addathlete',
-        element: (
-            <AthleteFormProvider>
-
-                <AddAthlete />
-
-            </AthleteFormProvider>
-        ),
-    },
-    {
-        path: '/addathleteb',
-        element: (
-            <AthleteFormProvider>
-
-                <AddAthleteb />
-
-            </AthleteFormProvider>
-        ),
-    },
-    {
-        path: '/addathletec',
-        element: (
-            <AthleteFormProvider>
-
-                <AddAthletec />
-
-            </AthleteFormProvider>
-        ),
-    },
+  { path: '/', element: <App /> },
+  { path: '/login', element: <Login /> },
+  { path: '/signup', element: <Signup /> },
+  { path: '/viewathletes', element: <ViewAthletes /> },
+  { path: '/athletesummarybasic/:id', element: <AthleteSummaryBasic /> },
+  { path: '/deleteathlete/:id', element: <DeleteAthlete /> },
+  { path: '/updateathlete/:id', element: <UpdateAthlete /> },
+  { path: '/readathlete/:id', element: <ReadAthlete /> },
+  {
+    path: '/addathlete',
+    element: (
+      <AthleteFormProvider>
+        <AddAthlete />
+      </AthleteFormProvider>
+    ),
+  },
+  {
+    path: '/addathleteb',
+    element: (
+      <AthleteFormProvider>
+        <AddAthleteb />
+      </AthleteFormProvider>
+    ),
+  },
+  {
+    path: '/addathletec',
+    element: (
+      <AthleteFormProvider>
+        <AddAthletec />
+      </AthleteFormProvider>
+    ),
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );
+

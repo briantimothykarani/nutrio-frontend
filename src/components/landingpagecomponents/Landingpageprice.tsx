@@ -1,87 +1,88 @@
-import { Button, Typography } from '@mui/material';
-import { useState, type SetStateAction } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function LandingPagePrice() {
-  const [selectedPlan, setSelectedPlan] = useState(null);
+const LandingPagePrice: React.FC = () => {
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
-  const handlePlanSelect = (plan: string | SetStateAction<null>) => {
+  const handlePlanSelect = (plan: string) => {
     setSelectedPlan(plan);
   };
 
   const plans = [
     {
-      name: 'Basic',
-      price: '$9.99 / year',
-      storage: '10GB Storage',
-      emails: '10 Emails',
-      domains: '10 Domains',
-      bandwidth: '1GB Bandwidth',
-      backgroundColor: 'bg-black',
-      buttonColor: 'bg-green-600'
+      name: 'Starter',
+      price: '$7.99 / month',
+      features: [
+        'Basic AI workout plans',
+        'Access to GPT-powered nutrition advice',
+        'Weekly progress tracking',
+        'Community support',
+      ],
+      backgroundColor: 'bg-green-600',
+      buttonColor: 'bg-green-700',
     },
     {
       name: 'Pro',
-      price: '$24.99 / year',
-      storage: '25GB Storage',
-      emails: '25 Emails',
-      domains: '25 Domains',
-      bandwidth: '2GB Bandwidth',
+      price: '$19.99 / month',
+      features: [
+        'Personalized AI workout & meal plans',
+        '24/7 GPT fitness assistant',
+        'Advanced analytics and insights',
+        'Priority support',
+      ],
       backgroundColor: 'bg-blue-600',
-      buttonColor: 'bg-green-600'
+      buttonColor: 'bg-blue-700',
     },
     {
-      name: 'Premium',
-      price: '$49.99 / year',
-      storage: '50GB Storage',
-      emails: '50 Emails',
-      domains: '50 Domains',
-      bandwidth: '5GB Bandwidth',
+      name: 'Elite',
+      price: '$39.99 / month',
+      features: [
+        'Custom AI coaching with GPT integration',
+        'One-on-one virtual trainer sessions',
+        'Exclusive content and challenges',
+        'Early access to new features',
+      ],
       backgroundColor: 'bg-purple-600',
-      buttonColor: 'bg-green-600'
+      buttonColor: 'bg-purple-700',
     },
   ];
 
   return (
-    <div className="flex  justify-center gap-6 p-8">
+    <div className="flex flex-wrap justify-center gap-6 p-8">
       {plans.map((plan) => (
         <div
           key={plan.name}
-          className={`border border-solid rounded-lg p-8 w-full sm:w-80 md:w-1/3 shadow-lg transition-transform transform hover:scale-105 ${selectedPlan === plan.name ? 'ring-4 ring-purple-500' : ''} 
-                      ${selectedPlan === plan.name ? 'shadow-xl' : 'shadow-md'} hover:shadow-xl`}
-          onClick={() => handlePlanSelect(plan.name)} // Handle plan selection
+          className={`border rounded-lg p-8 w-full sm:w-80 md:w-1/3 shadow-lg transition-transform transform hover:scale-105 cursor-pointer ${
+            selectedPlan === plan.name ? 'ring-4 ring-purple-500 shadow-xl' : 'shadow-md hover:shadow-xl'
+          }`}
+          onClick={() => handlePlanSelect(plan.name)}
         >
           <div className={`${plan.backgroundColor} text-white p-4 rounded-t-lg text-center`}>
-            <Typography variant="h5" component="div" className="font-semibold">
-              {plan.name}
-            </Typography>
+            <h3 className="text-xl font-semibold">{plan.name}</h3>
           </div>
           <div className="p-6 text-center border-b text-gray-700">
-            <Typography variant="h6">{plan.price}</Typography>
+            <h4 className="text-lg">{plan.price}</h4>
           </div>
           <div className="py-2 text-gray-600">
-            <ul className="list-none">
-              <li>{plan.storage}</li>
-              <li>{plan.emails}</li>
-              <li>{plan.domains}</li>
-              <li>{plan.bandwidth}</li>
+            <ul className="list-disc list-inside space-y-1">
+              {plan.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
             </ul>
           </div>
           <div className="mt-6">
-            <Button
-              variant="contained"
-              color="primary"
-              className={`w-full ${plan.buttonColor} text-white py-3 px-6 rounded-full`}
-
-            ><Link to="/signup" >
-                Sign Up
-              </Link>
-            </Button>
+            <Link
+              to="/signup"
+              className={`${plan.buttonColor} block w-full text-center text-white py-3 px-6 rounded-full hover:opacity-90`}
+            >
+              Sign Up
+            </Link>
           </div>
         </div>
       ))}
     </div>
   );
-}
+};
 
 export default LandingPagePrice;
+

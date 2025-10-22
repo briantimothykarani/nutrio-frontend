@@ -1,33 +1,47 @@
+import React from 'react';
 
-
-import { Grid, Typography, Link } from '@mui/material';
-
-function LandingPageFooter() {
+const Landingpagefooter: React.FC = () => {
   return (
-    <div className="bg-gray-800 text-white py-6">
-      <Grid container spacing={4} justifyContent="space-between">
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6">Hugs</Typography>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="body1">Quick Links</Typography>
-          <ul>
-            <li><Link href="/about" className="text-white">About Us</Link></li>
-            <li><Link href="/contact" className="text-white">Contact</Link></li>
-            <li><Link href="/help" className="text-white">Help</Link></li>
+    <footer className="bg-gray-100 py-8 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div>
+          {/* Content for first column */}
+          <h3 className="font-semibold mb-2">About Us</h3>
+          <p className="text-gray-600 text-sm">
+            Nutrio is an AI-powered fitness GPT wrapper to help you stay healthy and fit.
+          </p>
+        </div>
+        <div>
+          {/* Content for second column */}
+          <h3 className="font-semibold mb-2">Services</h3>
+          <ul className="text-gray-600 text-sm space-y-1">
+            <li>Personalized Training Plans</li>
+            <li>Nutrition Advice</li>
+            <li>Workout Tracking</li>
           </ul>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="body1">Follow Us</Typography>
-          <ul className=" space-x-4">
-            <li><Link href="#" className="text-white">Facebook</Link></li>
-            <li><Link href="#" className="text-white">Twitter</Link></li>
-            <li><Link href="#" className="text-white">Instagram</Link></li>
+        </div>
+        <div>
+          {/* Content for third column */}
+          <h3 className="font-semibold mb-2">Support</h3>
+          <ul className="text-gray-600 text-sm space-y-1">
+            <li>FAQ</li>
+            <li>Contact Us</li>
+            <li>Terms of Service</li>
           </ul>
-        </Grid>
-      </Grid>
-    </div>
+        </div>
+        <div>
+          {/* Content for fourth column */}
+          <h3 className="font-semibold mb-2">Follow Us</h3>
+          <ul className="text-gray-600 text-sm space-y-1">
+            <li>Twitter</li>
+            <li>Facebook</li>
+            <li>Instagram</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
   );
-}
+};
 
-export default LandingPageFooter;
+export default Landingpagefooter;
+
