@@ -5,8 +5,8 @@ import './index.css';
 import {
   createRoutesFromElements,
   Route,
-  BrowserRouter,
   RouterProvider,
+  createBrowserRouter,
 } from 'react-router-dom';
 
 import App from './App';
@@ -63,9 +63,8 @@ const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/nutrio-frontend">
-      <RouterProvider router={router} />
-    </BrowserRouter>
+    {/* Remove BrowserRouter */}
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
