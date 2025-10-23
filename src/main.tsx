@@ -59,7 +59,10 @@ const routes = createRoutesFromElements(
   </>
 );
 
-const router = createBrowserRouter(routes);
+// 👇 Add basename here
+const router = createBrowserRouter(routes, {
+  basename: '/nutrio-frontend',
+});
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
